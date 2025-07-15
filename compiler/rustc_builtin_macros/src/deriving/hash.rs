@@ -33,7 +33,11 @@ pub(crate) fn expand_deriving_hash(
             explicit_self: true,
             nonself_args: vec![(Ref(Box::new(Path(arg)), Mutability::Mut), sym::state)],
             ret_ty: Unit,
-            attributes: thin_vec![cx.attr_word(sym::inline, span)],
+            attributes: if !cx.sess.opts.unstable_opts.derive_inlineless {
+                thin_vec![cx.attr_word(sym::inline, span)]
+            } else {
+                thin_vec![]
+            },
             fieldless_variants_strategy: FieldlessVariantsStrategy::Unify,
             combine_substructure: combine_substructure(Box::new(|a, b, c| {
                 hash_substructure(a, b, c)

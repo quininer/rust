@@ -2169,6 +2169,8 @@ options! {
     dep_info_omit_d_target: bool = (false, parse_bool, [TRACKED],
         "in dep-info output, omit targets for tracking dependencies of the dep-info files \
         themselves (default: no)"),
+    derive_inlineless: bool = (false, parse_bool, [TRACKED],
+        "Make the built-in derive macro (`Clone`, `Debug`) generate less inline attributes (default: no)"),
     direct_access_external_data: Option<bool> = (None, parse_opt_bool, [TRACKED],
         "Direct or use GOT indirect to reference external data symbols"),
     dual_proc_macros: bool = (false, parse_bool, [TRACKED],
